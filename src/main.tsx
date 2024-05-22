@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
@@ -57,7 +56,7 @@ const theme: Theme = {
         },
       },
       dropzone: {
-        backgroundColor: { value: '#0c0d14' },
+        backgroundColor: { value: '#252525' },
         borderColor: '{colors.primary.80}',
       },
     },
