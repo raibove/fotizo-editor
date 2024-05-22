@@ -1,39 +1,38 @@
 import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
+import Header from "./components/header";
+import { Flex, useAuthenticator } from "@aws-amplify/ui-react";
+import { Route, Routes } from "react-router-dom";
+import Landing from "./pages/landing";
+// import type { Schema } from "../amplify/data/resource";
+// import { generateClient } from "aws-amplify/data";
 
-const client = generateClient<Schema>();
+// const client = generateClient<Schema>();
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const authData = useAuthenticator((context) => [context.user]);
 
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
+  if(authData.authStatus === 'configuring'){
+    return <div>Loading...</div>
   }
+  // const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+
+  // useEffect(() => {
+  //   client.models.Todo.observeQuery().subscribe({
+  //     next: (data) => setTodos([...data.items]),
+  //   });
+  // }, []);
+
+  // function createTodo() {
+  //   client.models.Todo.create({ content: window.prompt("Todo content") });
+  // }
 
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
-      </div>
-    </main>
+    <Flex direction='column' height='100vh' padding='0.5rem'>
+      <Header/>
+      <Routes>
+        <Route path='/' element={<Landing/>} />
+      </Routes>
+    </Flex>
   );
 }
 

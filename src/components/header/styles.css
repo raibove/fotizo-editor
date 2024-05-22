@@ -1,0 +1,13 @@
+.header-title {
+    color: var(--amplify-colors-white);
+    font-family: cursive;
+    font-style: italic;
+    cursor: pointer;
+    font-size: 28px;
+    margin: 0;
+}
+
+.header-con{
+    border-bottom: 2px solid var(--amplify-colors-teal-100) !important;
+    padding-bottom: 10px !important;
+}
