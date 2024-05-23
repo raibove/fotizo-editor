@@ -1,6 +1,7 @@
 // import { Navigate } from "react-router-dom";
 
 import { DropZone, Flex, Button, VisuallyHidden, Text } from "@aws-amplify/ui-react";
+import { uploadData } from "aws-amplify/storage";
 import { useState, useRef, ChangeEvent, useEffect } from "react";
 
 // interface Props {
@@ -19,6 +20,10 @@ const Upload = () => {
             return;
         }
         setFiles(files[0]);
+        uploadData({
+            path: `text/${files[0].name}`,
+            data: files[0]
+        })
     };
 
     useEffect(()=>{
