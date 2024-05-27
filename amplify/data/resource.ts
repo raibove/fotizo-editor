@@ -15,6 +15,7 @@ const schema = a.schema({
       blur: a.string(),
       contrast: a.string(),
       brightness: a.string(),
+      grayscale: a.string()
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });

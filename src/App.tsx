@@ -34,8 +34,8 @@ function App() {
         <Route path='/login' element={<Login isAuthenticated={authData.authStatus === 'authenticated'}/>} />
         <Route element={<ProtectedRoute isAuthenticated={authData.authStatus === 'authenticated'} />}>
           <Route path='/upload' element={<Upload />} />
+          <Route path="/edit/:id" element={<Editor/>} />
         </Route>
-        <Route path="/edit/:id" element={<Editor/>} />
       </Routes>
     </Flex>
   );
