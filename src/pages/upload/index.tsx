@@ -56,10 +56,6 @@ const Upload = () => {
                     :
                     <DropZone
                         acceptedFileTypes={acceptedFileTypes}
-                        onDropComplete={({ acceptedFiles, rejectedFiles }) => {
-                            console.log(acceptedFiles, rejectedFiles)
-                            const f0 = acceptedFiles[0];
-                        }}
                     >
                         <Flex direction="column" alignItems="center" height='40vh' justifyContent='center' maxHeight='400px' borderRadius='10px'>
                             <Text style={{ color: 'white' }}>Drag image here or</Text>
