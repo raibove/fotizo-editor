@@ -5,6 +5,7 @@ import Landing from "./pages/landing";
 import Upload from "./pages/upload";
 import ProtectedRoute from "./components/protected-route";
 import Login from "./pages/login";
+import Editor from "./pages/editor";
 // import type { Schema } from "../amplify/data/resource";
 // import { generateClient } from "aws-amplify/data";
 
@@ -37,6 +38,7 @@ function App() {
         <Route element={<ProtectedRoute isAuthenticated={authData.authStatus === 'authenticated'} />}>
           <Route path='/upload' element={<Upload />} />
         </Route>
+        <Route path="/edit/:id" element={<Editor/>} />
       </Routes>
     </Flex>
   );
