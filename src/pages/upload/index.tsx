@@ -3,7 +3,11 @@
 import { DropZone, Flex, Button, VisuallyHidden, Text } from "@aws-amplify/ui-react";
 import { getUrl, uploadData } from "aws-amplify/storage";
 import { useState, useRef, ChangeEvent, useEffect } from "react";
+import type { Schema } from "../../../amplify/data/resource";
+import { generateClient } from "aws-amplify/data";
+import { useNavigate } from "react-router-dom";
 
+const client = generateClient<Schema>();
 // interface Props {
 //     isAuthenticated: boolean;
 // }
@@ -11,6 +15,8 @@ import { useState, useRef, ChangeEvent, useEffect } from "react";
 const acceptedFileTypes = ['image/png', 'image/jpeg'];
 
 const Upload = () => {
+    const navigate = useNavigate();
+
     const [files, setFiles] = useState<null | File>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [img, setImg] = useState<string | null>(null);
@@ -23,6 +29,7 @@ const Upload = () => {
             return;
         }
         setFiles(files[0]);
+        
         try {
             setLoading(true);
             const res = await uploadData({
@@ -32,6 +39,13 @@ const Upload = () => {
             // const url =  await getUrl({path: res.path});
             console.log(res.path, res.metadata, res.eTag, res);
             // setImg(url.url.href)
+            const r = await client.models.Edits.create({eTag: res.eTag, path: res.path});
+            if(r.data){
+                console.log(r.data);
+                navigate(`/edit/${r.data.id}`)
+            } else {
+                throw new Error('failed to load data')
+            }
         } catch (e) {
             console.log(e);
         } finally {

@@ -6,10 +6,7 @@ import Upload from "./pages/upload";
 import ProtectedRoute from "./components/protected-route";
 import Login from "./pages/login";
 import Editor from "./pages/editor";
-// import type { Schema } from "../amplify/data/resource";
-// import { generateClient } from "aws-amplify/data";
 
-// const client = generateClient<Schema>();
 
 function App() {
   const authData = useAuthenticator((context) => [context.user]);
