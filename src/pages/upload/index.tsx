@@ -1,6 +1,6 @@
 // import { Navigate } from "react-router-dom";
 
-import { DropZone, Flex, Button, VisuallyHidden, Text } from "@aws-amplify/ui-react";
+import { DropZone, Flex, Button, VisuallyHidden, Text, Heading } from "@aws-amplify/ui-react";
 import { uploadData } from "aws-amplify/storage";
 import { useState, useRef, ChangeEvent } from "react";
 import type { Schema } from "../../../amplify/data/resource";
@@ -52,7 +52,7 @@ const Upload = () => {
         <div style={{ flexGrow: 1, margin: '5vw', marginTop: '15vh' }}>
             {
                 loading ?
-                    <div></div>
+                    <div><Heading level={4} color='white'>Loading...</Heading></div>
                     :
                     <DropZone
                         acceptedFileTypes={acceptedFileTypes}

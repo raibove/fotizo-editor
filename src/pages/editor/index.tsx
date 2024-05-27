@@ -228,7 +228,7 @@ const Editor = () => {
                 padding='40px 20px'
                 overflow='auto'
             >
-                {editData && (
+                {editData ? (
                     <Flex style={{ flexDirection: 'column', height: '100%'}}>
                         <div style={{flexGrow: '1',}}>
                             <div>
@@ -284,7 +284,9 @@ const Editor = () => {
                             </Flex>
                         </div>
                     </Flex>
-                )}
+                )   :
+                <p color='white'>Loading...</p>
+            }
             </View>
             <View
                 backgroundColor={tokens.colors.neutral[90]}
